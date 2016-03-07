@@ -1,5 +1,5 @@
-require "strict_periods/version"
+require 'strict_periods/strict_period'
 
-module StrictPeriods
-  # Your code goes here...
-end
+require 'strict_periods/period_pickers/week_picker'
+
+require 'strict_periods/constants'
