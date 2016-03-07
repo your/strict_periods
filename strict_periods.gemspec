@@ -1,11 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'strict_periods/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "strict_periods"
-  spec.version       = StrictPeriods::VERSION
+  spec.version       = "0.0.1"
   spec.authors       = ["your"]
   spec.email         = ["g.lobraico@gmail.com"]
 
