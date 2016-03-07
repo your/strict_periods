@@ -1,0 +1,1 @@
+StrictPeriod = StrictPeriods::StrictPeriod
