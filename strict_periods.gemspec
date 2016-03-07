@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["your"]
   spec.email         = ["g.lobraico@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{week picker utility}
+  spec.description   = %q{Get an array of weeks after/before and anchor date}
+  spec.homepage      = "http://github.com/your/strict_periods"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
