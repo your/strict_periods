@@ -55,7 +55,7 @@ module StrictPeriods
           monday = @anchor + @offset - (SECS_IN_A_WEEK - SECS_IN_A_DAY)
 
           if @past_only && (sunday > Time.now.utc || monday > Time.now.utc)
-          	return # Discarded week in the future (not ended/started yet)
+            return # Discarded week in the future (not ended/started yet)
           end
 
           raise OffsetError unless sunday.sunday? && monday.monday?
