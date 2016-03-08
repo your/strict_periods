@@ -13,6 +13,7 @@ describe StrictPeriods::PeriodPickers::WeekPicker do
         expect(week_picker.anchor).to be_truthy
         expect(week_picker.anchor).to be_an_instance_of Time
         expect(week_picker.anchor).to eq Time.utc(2016,3,7)
+        expect(week_picker.instance_variable_get(:@steps)).to eq 0
       end
     end
 
