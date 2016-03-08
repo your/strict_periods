@@ -32,6 +32,15 @@ describe StrictPeriod do
 
       it { expect{ strict_period }.to raise_error ArgumentError }
     end
+
+    context "when past_only is not provided" do 
+      it { expect(strict_period.past_only).to eq true }
+    end
+
+    context "when past_only is provided" do 
+      let(:strict_period) { described_class.new(anchor: anchor, past_only: false) }
+      it { expect(strict_period.past_only).to eq false }
+    end
   end
 
   describe "#_anchor_at" do
