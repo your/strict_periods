@@ -69,4 +69,12 @@ describe StrictPeriods::PeriodPickers::WeekPicker do
 		  end
   	end
   end
+
+  describe "#reset!" do
+  	before do
+  		week_picker.send(:reset!)
+  	end
+  	it { expect(week_picker.instance_variable_get(:@offset)).to eq 60*60*24*(7 - 1)}
+  	it { expect(week_picker.instance_variable_get(:@steps)).to eq 0 }
+  end
 end
