@@ -11,7 +11,7 @@ module StrictPeriods
         @steps     = 0
         @anchor    = anchor
         @past_only = past_only
-        raise ArgumentError if @anchor.nil?
+        raise ArgumentError if @anchor.nil? || !@anchor.is_a?(Time)
 
         _offset_anchor
       end
