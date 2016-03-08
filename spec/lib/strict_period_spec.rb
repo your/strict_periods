@@ -74,7 +74,25 @@ describe StrictPeriod do
     end
   end
 
-  describe "#previous_weeks", pending => true do
+  describe "#previous_weeks" do
+    let(:anchor) { Time.utc(2015,3,7).strftime('%Y-%m-%d') }
+    let(:number_of_weeks) { 2 }
+
+    context "when there isn't specified number_of_weeks" do
+      it { expect(strict_period.previous_weeks).to be_kind_of(Array) }
+      it { expect(strict_period.previous_weeks).to eq [["2015-02-23", "2015-03-01"]] }
+      it { expect(Time.parse(strict_period.previous_weeks[0][0]).monday?).to eq true }
+      it { expect(Time.parse(strict_period.previous_weeks[0][1]).sunday?).to eq true }
+    end
+
+    context "when there's specified number_of_weeks" do
+      it { expect(strict_period.previous_weeks).to be_kind_of(Array) }
+      it { expect(strict_period.previous_weeks(number_of_weeks)).to eq [["2015-02-16", "2015-02-22"],["2015-02-23", "2015-03-01"]] }
+      it { expect(Time.parse(strict_period.previous_weeks(number_of_weeks)[0][0]).monday?).to eq true }
+      it { expect(Time.parse(strict_period.previous_weeks(number_of_weeks)[0][1]).sunday?).to eq true }
+      it { expect(Time.parse(strict_period.previous_weeks(number_of_weeks)[1][0]).monday?).to eq true }
+      it { expect(Time.parse(strict_period.previous_weeks(number_of_weeks)[1][1]).sunday?).to eq true }
+    end
   end
 
   describe "#next_weeks", pending => true do
