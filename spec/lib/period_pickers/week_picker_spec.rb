@@ -77,4 +77,11 @@ describe StrictPeriods::PeriodPickers::WeekPicker do
   	it { expect(week_picker.instance_variable_get(:@offset)).to eq 60*60*24*(7 - 1)}
   	it { expect(week_picker.instance_variable_get(:@steps)).to eq 0 }
   end
+
+  describe "_offset_anchor" do
+  	before do
+  		week_picker.send(:_offset_anchor)
+  	end
+  	it { expect(week_picker.instance_variable_get(:@offset)).to eq 60*60*24*(7 - 1)}
+  end
 end
