@@ -95,6 +95,31 @@ describe StrictPeriod do
     end
   end
 
-  describe "#next_weeks", pending => true do
+  describe "#next_weeks" do
+    context "when the actual next weeks is in the future" do
+      it { expect(strict_period.next_weeks).to be_kind_of(Array) }
+      it { expect(strict_period.next_weeks).to eq [] }
+    end
+
+    context "when the actual next weeks is in the past" do
+      let(:anchor) { Time.utc(2015,3,7).strftime('%Y-%m-%d') }
+      let(:number_of_weeks) { 2 }
+
+      context "when there isn't specified number_of_weeks" do
+        it { expect(strict_period.next_weeks).to be_kind_of(Array) }
+        it { expect(strict_period.next_weeks).to eq [["2015-03-09", "2015-03-15"]] }
+        it { expect(Time.parse(strict_period.next_weeks[0][0]).monday?).to eq true }
+        it { expect(Time.parse(strict_period.next_weeks[0][1]).sunday?).to eq true }
+      end
+
+      context "when there's specified number_of_weeks" do
+        it { expect(strict_period.next_weeks(number_of_weeks)).to be_kind_of(Array) }
+        it { expect(strict_period.next_weeks(number_of_weeks)).to eq [["2015-03-09", "2015-03-15"],["2015-03-16", "2015-03-22"]] }
+        it { expect(Time.parse(strict_period.next_weeks(number_of_weeks)[0][0]).monday?).to eq true }
+        it { expect(Time.parse(strict_period.next_weeks(number_of_weeks)[0][1]).sunday?).to eq true }
+        it { expect(Time.parse(strict_period.next_weeks(number_of_weeks)[1][0]).monday?).to eq true }
+        it { expect(Time.parse(strict_period.next_weeks(number_of_weeks)[1][1]).sunday?).to eq true }
+      end
+    end
   end
 end
