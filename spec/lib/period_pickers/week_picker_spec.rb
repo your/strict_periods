@@ -84,4 +84,31 @@ describe StrictPeriods::PeriodPickers::WeekPicker do
   	end
   	it { expect(week_picker.instance_variable_get(:@offset)).to eq 60*60*24*(7 - 1)}
   end
+
+  describe "_reset_steps" do
+  	let(:number_of_weeks) { 2 }
+
+  	context "when no action was done" do
+  		before do
+	  		week_picker.send(:_reset_steps)
+	  	end
+  		it { expect(week_picker.instance_variable_get(:@steps)).to eq 0 }
+  	end
+
+  	context "when weeks was subtracted" do
+  		before do
+  			week_picker - number_of_weeks
+	  		week_picker.send(:_reset_steps)
+	  	end
+  		it { expect(week_picker.instance_variable_get(:@steps)).to eq 0 }
+  	end
+
+  	context "when weeks was added" do
+  		before do
+  			week_picker + number_of_weeks
+	  		week_picker.send(:_reset_steps)
+	  	end
+  		it { expect(week_picker.instance_variable_get(:@steps)).to eq 0 }
+  	end
+  end
 end
