@@ -36,4 +36,37 @@ describe StrictPeriods::PeriodPickers::WeekPicker do
     	it { expect(week_picker.past_only).to eq false }
     end
   end
+
+  describe "#operands" do
+  	let(:number_of_weeks) { 2 }
+  	context "when using minus operand" do
+  		before do
+  			week_picker - number_of_weeks
+  		end
+  		it { expect(week_picker.anchor).to eq Time.utc(2016,2,22) }
+  		it { expect(week_picker.instance_variable_get(:@steps)).to eq -number_of_weeks }
+
+  		context "_offset_anchor should be the same" do
+		  	before do
+		  		week_picker.send(:_offset_anchor)
+		  	end
+		  	it { expect(week_picker.instance_variable_get(:@offset)).to eq 60*60*24*(7 - 1)}
+		  end
+  	end
+
+  	context "when using plus operand" do
+  		before do
+  			week_picker + number_of_weeks
+  		end
+  		it { expect(week_picker.anchor).to eq Time.utc(2016,3,21) }
+  		it { expect(week_picker.instance_variable_get(:@steps)).to eq number_of_weeks }
+
+  		context "_offset_anchor should be the same" do
+		  	before do
+		  		week_picker.send(:_offset_anchor)
+		  	end
+		  	it { expect(week_picker.instance_variable_get(:@offset)).to eq 60*60*24*(7 - 1)}
+		  end
+  	end
+  end
 end
