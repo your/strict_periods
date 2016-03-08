@@ -15,7 +15,7 @@ describe StrictPeriod do
       it "accepts anchor date formatted as '%Y-%m-%d' string" do
         expect(strict_period.anchor).to be_truthy
         expect(strict_period.anchor).to be_an_instance_of Time
-        expect(strict_period.anchor.strftime('%Y-%m-%d')).to eq now.strftime('%Y-%m-%d')
+        expect(strict_period.anchor.strftime('%Y-%m-%d')).to eq Time.utc(2016,3,7).strftime('%Y-%m-%d')
       end
     end
 
